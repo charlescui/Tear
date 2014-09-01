@@ -12,4 +12,7 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+//业务参数
+@property (strong, nonatomic) NSArray *balloons;
+
 @end

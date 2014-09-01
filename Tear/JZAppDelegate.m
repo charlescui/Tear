@@ -13,6 +13,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    self.balloons = [NSArray arrayWithObjects:@"Black.png", @"Cyan.png", @"Lime_green.png", @"Magenta.png", @"Navy_blue.png", @"Orange.png", @"Pink.png", @"White.png", @"Yellow.png", nil];
     return YES;
 }
 							

@@ -8,6 +8,12 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-@interface JZMyScene : SKScene
+@class JZBalloonNode;
+
+@interface JZMyScene : SKScene{
+    
+}
+
+@property (nonatomic, strong) JZBalloonNode *selectedNode;
 
 @end
