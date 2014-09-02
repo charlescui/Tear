@@ -14,5 +14,9 @@
 
 //业务参数
 @property (strong, nonatomic) NSArray *balloons;
+@property (nonatomic) u_int32_t knifeCategory;
+@property (nonatomic) u_int32_t balloonCategory;
+@property (nonatomic, strong) NSString *scoreNotify;
+@property (nonatomic, strong) NSString *shareLabelName;
 
 @end

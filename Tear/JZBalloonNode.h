@@ -18,5 +18,7 @@
 + (JZBalloonNode *)spriteNodeWithRandomColor;
 - (void)riseFrom:(CGPoint)location;
 - (void)riseWithPanTo:(CGPoint)to withDuration:(float)duration;
+- (void)blast;
+- (void)startBlow;
 
 @end

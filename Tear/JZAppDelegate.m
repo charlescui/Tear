@@ -7,6 +7,8 @@
 //
 
 #import "JZAppDelegate.h"
+#import <ShareSDK/ShareSDK.h>
+#import "WXApi.h"
 
 @implementation JZAppDelegate
 
@@ -14,6 +16,20 @@
 {
     // Override point for customization after application launch.
     self.balloons = [NSArray arrayWithObjects:@"Black.png", @"Cyan.png", @"Lime_green.png", @"Magenta.png", @"Navy_blue.png", @"Orange.png", @"Pink.png", @"White.png", @"Yellow.png", nil];
+    
+    //小刀的标识
+    self.knifeCategory = (0x1 << 0);
+    //气球的标识
+    self.balloonCategory = (0x1 << 1);
+    //记分牌的通知信息
+    self.scoreNotify = @"ScoreNotify";
+    //分享Label的name
+    self.shareLabelName = @"ShareLabel";
+    
+    [ShareSDK registerApp:@"2f295fdb1e99"];
+    [ShareSDK connectWeChatWithAppId:@"wx4868b35061f87885"
+                           wechatCls:[WXApi class]];
+    
     return YES;
 }
 							
@@ -42,6 +58,23 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (BOOL)application:(UIApplication *)application  handleOpenURL:(NSURL *)url
+{
+    return [ShareSDK handleOpenURL:url
+                        wxDelegate:self];
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation
+{
+    return [ShareSDK handleOpenURL:url
+                 sourceApplication:sourceApplication
+                        annotation:annotation
+                        wxDelegate:self];
 }
 
 @end

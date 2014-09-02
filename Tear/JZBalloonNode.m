@@ -29,15 +29,16 @@
         sprite.name = @"balloon";
         sprite.balloonColor = name;
         //随机设置气球的缩放尺寸
-        float scale = ((arc4random() % 60) + 40)/100.0;
+        float scale = ((arc4random() % 30) + 60)/100.0;
         sprite.size = CGSizeMake(70*scale, 75*scale);
         sprite.physicsBody.density = 0.2;
         sprite.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:sprite.frame.size.width/2];
         sprite.physicsBody.affectedByGravity = NO;
         //随机设置每个气球的速度
-        sprite.speed = ((arc4random() % 20) + 20);
+        sprite.speed = ((arc4random() % 5) + 10);
         //气球的弹性
         sprite.physicsBody.restitution = 1;
+        sprite.physicsBody.categoryBitMask = ((JZAppDelegate *)[UIApplication sharedApplication].delegate).balloonCategory;
     }
     
     return sprite;
@@ -51,6 +52,12 @@
     [self runAction:repeatingAction];
 }
 
+/**
+ *  拖拽
+ *
+ *  @param to       到某个位置
+ *  @param duration 持续时间
+ */
 - (void)riseWithPanTo:(CGPoint)to withDuration:(float)duration
 {
     SKAction *moveTo = [SKAction moveTo:to duration:duration];
@@ -62,6 +69,39 @@
     SKAction *group = [SKAction group:@[moveTo, repeatingAction]];
     
     [self runAction:group];
+}
+
+/**
+ *  气球爆炸
+ */
+- (void)blast
+{
+    SKAction *zoom = [SKAction scaleTo:2.0 duration:0.25];
+//    SKAction *wait = [SKAction waitForDuration: 0.5];
+    SKAction *fadeAway = [SKAction fadeOutWithDuration:0.25];
+    SKAction *removeNode = [SKAction removeFromParent];
+    SKAction *sequence = [SKAction sequence:@[zoom, fadeAway, removeNode]];
+    [self runAction: sequence completion:^(){
+        NSString *notify = ((JZAppDelegate *)[UIApplication sharedApplication].delegate).scoreNotify;
+        [[NSNotificationCenter defaultCenter] postNotificationName:notify object:@(1)];
+    }];
+}
+
+/**
+ *  吹气球
+ */
+- (void)startBlow
+{
+    SKAction *zoom = [SKAction scaleBy:1.1 duration:1];
+//    SKAction *repeatingAction = [SKAction repeatActionForever:zoom];
+//    [self runAction: repeatingAction];
+    [self runAction:zoom completion:^{
+        if (self.size.width > 160) {
+            [self blast];
+        }else{
+            [self startBlow];
+        }
+    }];
 }
 
 @end

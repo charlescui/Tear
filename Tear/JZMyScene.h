@@ -8,12 +8,14 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-@class JZBalloonNode;
+@class JZBalloonNode, JZScoreLabel, JZShareLabel;
 
-@interface JZMyScene : SKScene{
-    
+@interface JZMyScene : SKScene<UIGestureRecognizerDelegate>{
+    BOOL swipeBlasting;
 }
 
 @property (nonatomic, strong) JZBalloonNode *selectedNode;
+@property (nonatomic, strong) JZScoreLabel *scoreLabel;
+@property (nonatomic, strong) JZShareLabel *shareLabel;
 
 @end
