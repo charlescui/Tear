@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2727443819B371C900C83306"
-               BuildableName = "Tear.app"
+               BuildableName = "&#x65e0;&#x804a;&#x7684;&#x6c14;&#x7403;&#x4eec;.app"
                BlueprintName = "Tear"
                ReferencedContainer = "container:Tear.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2727443819B371C900C83306"
-            BuildableName = "Tear.app"
+            BuildableName = "&#x65e0;&#x804a;&#x7684;&#x6c14;&#x7403;&#x4eec;.app"
             BlueprintName = "Tear"
             ReferencedContainer = "container:Tear.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2727443819B371C900C83306"
-            BuildableName = "Tear.app"
+            BuildableName = "&#x65e0;&#x804a;&#x7684;&#x6c14;&#x7403;&#x4eec;.app"
             BlueprintName = "Tear"
             ReferencedContainer = "container:Tear.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2727443819B371C900C83306"
-            BuildableName = "Tear.app"
+            BuildableName = "&#x65e0;&#x804a;&#x7684;&#x6c14;&#x7403;&#x4eec;.app"
             BlueprintName = "Tear"
             ReferencedContainer = "container:Tear.xcodeproj">
          </BuildableReference>

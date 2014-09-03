@@ -22,7 +22,7 @@
         
         SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
         
-        myLabel.text = @"Hello, ONGO Baby!";
+        myLabel.text = @"Hello, ONGO!";
         myLabel.fontSize = 25;
         myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
                                        CGRectGetMidY(self.frame));
@@ -38,6 +38,11 @@
         self.shareLabel = [JZShareLabel labelNodeWithFontNamed:@"Chalkduster"];
         self.shareLabel.position = CGPointMake(230, 20);
         [self addChild:self.shareLabel];
+        
+        //设置火球
+        self.fireNode = [NSKeyedUnarchiver unarchiveObjectWithFile:[[NSBundle mainBundle] pathForResource:@"JZFireParticle" ofType:@"sks"]];
+        self.fireNode.alpha = 0;
+        [self addChild:self.fireNode];
     }
 
     return self;
@@ -193,8 +198,10 @@
     }
     else if(recognizer.state == UIGestureRecognizerStateEnded)
     {
-        [_selectedNode removeAllActions];
-        [_selectedNode riseFrom:touchLocation];
+        if ([_selectedNode.name isEqualToString:@"balloon"]) {
+            [_selectedNode removeAllActions];
+            [_selectedNode riseFrom:touchLocation];
+        }
         _selectedNode = nil;
     }
     else if(recognizer.state == UIGestureRecognizerStateChanged)
@@ -217,14 +224,26 @@
     {
         if ([node.name isEqualToString:@"JZMyScene"]) {
             swipeBlasting = YES;
+            //显示火球
+            self.fireNode.alpha = 0;
+            self.fireNode.particlePosition = touchLocation;
+            SKAction *fadeIn = [SKAction fadeInWithDuration:0.25];
+            [self.fireNode runAction:fadeIn];
         }
     }
     else if(recognizer.state == UIGestureRecognizerStateEnded)
     {
         swipeBlasting = NO;
+        //隐藏火球
+        self.fireNode.alpha = 1;
+        SKAction *fadeAway = [SKAction fadeOutWithDuration:0.25];
+        [self.fireNode runAction:fadeAway];
     }
     else if(recognizer.state == UIGestureRecognizerStateChanged)
     {
+        //火球要跟随手指运动
+        self.fireNode.particlePosition = touchLocation;
+        //手指经过的气球要爆炸
         if (swipeBlasting && [node.name isEqualToString:@"balloon"]) {
             [(JZBalloonNode *)node blast];
         }

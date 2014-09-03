@@ -34,6 +34,7 @@
 		2727448919B37FB400C83306 /* White.png in Resources */ = {isa = PBXBuildFile; fileRef = 2727448019B37FB400C83306 /* White.png */; };
 		2727448A19B37FB400C83306 /* Yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 2727448119B37FB400C83306 /* Yellow.png */; };
 		2727448E19B424A200C83306 /* JZBalloonNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 2727448D19B424A200C83306 /* JZBalloonNode.m */; };
+		27A6BF6819B6E07F00BDF8A7 /* JZFireParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 27A6BF6719B6E07F00BDF8A7 /* JZFireParticle.sks */; };
 		27BF1AA719B5CE1D0045C80C /* JZScoreLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BF1AA619B5CE1D0045C80C /* JZScoreLabel.m */; };
 		27E0D70F19B617B200DEC7AB /* QQConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27E0D6F219B617B200DEC7AB /* QQConnection.framework */; };
 		27E0D71019B617B200DEC7AB /* SinaWeiboConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27E0D6F319B617B200DEC7AB /* SinaWeiboConnection.framework */; };
@@ -79,7 +80,7 @@
 /* Begin PBXFileReference section */
 		0F4F979632AD4D23A7695F94 /* Pods-Tear.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tear.xcconfig"; path = "Pods/Pods-Tear.xcconfig"; sourceTree = "<group>"; };
 		1AF33F541D43412BA26B7C60 /* libPods-Tear.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tear.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2727443919B371C900C83306 /* Tear.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tear.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2727443919B371C900C83306 /* 无聊的气球们.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "无聊的气球们.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2727443C19B371C900C83306 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2727443E19B371C900C83306 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		2727444019B371C900C83306 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -113,6 +114,7 @@
 		2727448119B37FB400C83306 /* Yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Yellow.png; sourceTree = "<group>"; };
 		2727448C19B424A200C83306 /* JZBalloonNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZBalloonNode.h; sourceTree = "<group>"; };
 		2727448D19B424A200C83306 /* JZBalloonNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZBalloonNode.m; sourceTree = "<group>"; };
+		27A6BF6719B6E07F00BDF8A7 /* JZFireParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = JZFireParticle.sks; sourceTree = "<group>"; };
 		27BF1AA519B5CE1D0045C80C /* JZScoreLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZScoreLabel.h; sourceTree = "<group>"; };
 		27BF1AA619B5CE1D0045C80C /* JZScoreLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZScoreLabel.m; sourceTree = "<group>"; };
 		27E0D6F219B617B200DEC7AB /* QQConnection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = QQConnection.framework; sourceTree = "<group>"; };
@@ -211,7 +213,7 @@
 		2727443A19B371C900C83306 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2727443919B371C900C83306 /* Tear.app */,
+				2727443919B371C900C83306 /* 无聊的气球们.app */,
 				2727446119B371C900C83306 /* TearTests.xctest */,
 			);
 			name = Products;
@@ -242,6 +244,7 @@
 		2727444419B371C900C83306 /* Tear */ = {
 			isa = PBXGroup;
 			children = (
+				27A6BF5E19B6DCD800BDF8A7 /* Particle */,
 				27E0D6EF19B6179600DEC7AB /* Lib */,
 				27BF1AA119B5CCAA0045C80C /* Labels */,
 				2727448B19B4244D00C83306 /* Sprites */,
@@ -314,6 +317,14 @@
 				27BF1AA619B5CE1D0045C80C /* JZScoreLabel.m */,
 			);
 			name = Sprites;
+			sourceTree = "<group>";
+		};
+		27A6BF5E19B6DCD800BDF8A7 /* Particle */ = {
+			isa = PBXGroup;
+			children = (
+				27A6BF6719B6E07F00BDF8A7 /* JZFireParticle.sks */,
+			);
+			name = Particle;
 			sourceTree = "<group>";
 		};
 		27BF1AA119B5CCAA0045C80C /* Labels */ = {
@@ -436,7 +447,7 @@
 			);
 			name = Tear;
 			productName = Tear;
-			productReference = 2727443919B371C900C83306 /* Tear.app */;
+			productReference = 2727443919B371C900C83306 /* 无聊的气球们.app */;
 			productType = "com.apple.product-type.application";
 		};
 		2727446019B371C900C83306 /* TearTests */ = {
@@ -512,6 +523,7 @@
 				2727445C19B371C900C83306 /* Images.xcassets in Resources */,
 				27E0D71519B617B200DEC7AB /* Resource.bundle in Resources */,
 				2727445A19B371C900C83306 /* Spaceship.png in Resources */,
+				27A6BF6819B6E07F00BDF8A7 /* JZFireParticle.sks in Resources */,
 				2727448A19B37FB400C83306 /* Yellow.png in Resources */,
 				2727448919B37FB400C83306 /* White.png in Resources */,
 				2727445219B371C900C83306 /* Main.storyboard in Resources */,
@@ -725,7 +737,7 @@
 					"$(PROJECT_DIR)/Tear/ShareSDK/Extend/SinaWeiboSDK",
 					"$(PROJECT_DIR)/Tear/ShareSDK/Extend/WeChatSDK",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "无聊的气球们";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				WRAPPER_EXTENSION = app;
 			};
@@ -754,7 +766,7 @@
 					"$(PROJECT_DIR)/Tear/ShareSDK/Extend/SinaWeiboSDK",
 					"$(PROJECT_DIR)/Tear/ShareSDK/Extend/WeChatSDK",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "无聊的气球们";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				WRAPPER_EXTENSION = app;
 			};

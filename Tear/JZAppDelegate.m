@@ -9,6 +9,8 @@
 #import "JZAppDelegate.h"
 #import <ShareSDK/ShareSDK.h>
 #import "WXApi.h"
+#import <TencentOpenAPI/QQApiInterface.h>
+#import <TencentOpenAPI/TencentOAuth.h>
 
 @implementation JZAppDelegate
 
@@ -30,9 +32,17 @@
     [ShareSDK connectWeChatWithAppId:@"wx4868b35061f87885"
                            wechatCls:[WXApi class]];
     
+//    //添加QQ应用
+//    [ShareSDK connectQQWithQZoneAppKey:@"1102364029"                 //该参数填入申请的QQ AppId
+//                     qqApiInterfaceCls:[QQApiInterface class]
+//                       tencentOAuthCls:[TencentOAuth class]];
+//    //导入QQ互联和QQ好友分享需要的外部库类型，如果不需要QQ空间SSO和QQ好友分享可以不调用此方法
+//    [ShareSDK importQQClass:[QQApiInterface class]
+//            tencentOAuthCls:[TencentOAuth class]];
+    
     return YES;
 }
-							
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

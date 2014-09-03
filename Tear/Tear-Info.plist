@@ -44,9 +44,8 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>wx4868b35061f87885</string>
+				<string>QQ41B4BD7D</string>
 			</array>
-			<key>CFBundleURLName</key>
-			<string></string>
 		</dict>
 	</array>
 </dict>
