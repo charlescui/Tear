@@ -31,6 +31,7 @@
         self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
         self.name = @"JZMyScene";
         
+        //透明的label底色
         self.scoreLabel = [JZScoreLabel spriteNodeWithColor:[UIColor colorWithRed:0.078 green:0.493 blue:0.877 alpha:0.000] size:CGSizeMake(90, 30)];
         self.scoreLabel.position = CGPointMake(30, 20);
         [self addChild:self.scoreLabel];
@@ -103,7 +104,7 @@
 
 - (void)handleTapFrom:(UITapGestureRecognizer *)recognizer
 {
-    int count = recognizer.numberOfTouches;
+    NSUInteger count = recognizer.numberOfTouches;
     
     if (count == 1) {
         //先判断是否是点击到了分享按钮
@@ -123,43 +124,44 @@
             JZBalloonNode *sprite = [JZBalloonNode spriteNodeWithRandomColor];
             [self addChild:sprite];
             [sprite riseFrom:touchLocation];
+//            [sprite riseFrom:touchLocation byY:(self.frame.size.height - touchLocation.y)];
         }
     }
 }
 
 - (void)handlePanFrom:(UIPanGestureRecognizer *)recognizer
 {
-    if (recognizer.state == UIGestureRecognizerStateBegan) {
-        
-        CGPoint touchLocation = [recognizer locationInView:recognizer.view];
-        touchLocation = [self convertPointFromView:touchLocation];
-        _selectedNode = (JZBalloonNode *)[self selectNodeForTouch:touchLocation];
-        if (_selectedNode) {
-            [_selectedNode removeAllActions];
-        }
-        
-    } else if (recognizer.state == UIGestureRecognizerStateChanged) {
-        
-        CGPoint translation = [recognizer translationInView:recognizer.view];
-        translation = CGPointMake(translation.x, -translation.y);
-        [self panForTranslation:translation];
-        [recognizer setTranslation:CGPointZero inView:recognizer.view];
-        
-    } else if (recognizer.state == UIGestureRecognizerStateEnded) {
-        
-        if ([[_selectedNode name] isEqualToString:@"balloon"]) {
-            float scrollDuration = 0.02;
-            CGPoint velocity = [recognizer velocityInView:recognizer.view];
-            CGPoint pos = [_selectedNode position];
-            CGPoint p = mult(velocity, scrollDuration);
-            
-            CGPoint newPos = CGPointMake(pos.x + p.x, pos.y + p.y);
-            newPos = [self boundLayerPos:newPos];
-            //拖拽移动
-            [_selectedNode riseWithPanTo:newPos withDuration:scrollDuration];
-        }
-        
-    }
+//    if (recognizer.state == UIGestureRecognizerStateBegan) {
+//        
+//        CGPoint touchLocation = [recognizer locationInView:recognizer.view];
+//        touchLocation = [self convertPointFromView:touchLocation];
+//        _selectedNode = (JZBalloonNode *)[self selectNodeForTouch:touchLocation];
+//        if (_selectedNode) {
+//            [_selectedNode removeAllActions];
+//        }
+//        
+//    } else if (recognizer.state == UIGestureRecognizerStateChanged) {
+//        
+//        CGPoint translation = [recognizer translationInView:recognizer.view];
+//        translation = CGPointMake(translation.x, -translation.y);
+//        [self panForTranslation:translation];
+//        [recognizer setTranslation:CGPointZero inView:recognizer.view];
+//        
+//    } else if (recognizer.state == UIGestureRecognizerStateEnded) {
+//        
+//        if ([[_selectedNode name] isEqualToString:@"balloon"]) {
+//            float scrollDuration = 0.02;
+//            CGPoint velocity = [recognizer velocityInView:recognizer.view];
+//            CGPoint pos = [_selectedNode position];
+//            CGPoint p = mult(velocity, scrollDuration);
+//            
+//            CGPoint newPos = CGPointMake(pos.x + p.x, pos.y + p.y);
+//            newPos = [self boundLayerPos:newPos];
+//            //拖拽移动
+//            [_selectedNode riseWithPanTo:newPos withDuration:scrollDuration];
+//        }
+//        
+//    }
     //拖拽和滑动手势很难区分
     //当拖拽手势存在的时候，滑动的回掉无法响应
     //需要在拖拽响应的时候，主动调用滑动
@@ -219,17 +221,16 @@
 {
     CGPoint touchLocation = [recognizer locationInView:recognizer.view];
     touchLocation = [self convertPointFromView:touchLocation];
-    SKSpriteNode *node = [self selectNodeForTouch:touchLocation];
     if(recognizer.state == UIGestureRecognizerStateBegan)
     {
-        if ([node.name isEqualToString:@"JZMyScene"]) {
+//        if ([node.name isEqualToString:@"JZMyScene"]) {
             swipeBlasting = YES;
             //显示火球
             self.fireNode.alpha = 0;
             self.fireNode.particlePosition = touchLocation;
             SKAction *fadeIn = [SKAction fadeInWithDuration:0.25];
             [self.fireNode runAction:fadeIn];
-        }
+//        }
     }
     else if(recognizer.state == UIGestureRecognizerStateEnded)
     {
@@ -241,10 +242,11 @@
     }
     else if(recognizer.state == UIGestureRecognizerStateChanged)
     {
+        SKSpriteNode *node = [self selectNodeForTouch:touchLocation withName:@"balloon"];
         //火球要跟随手指运动
         self.fireNode.particlePosition = touchLocation;
         //手指经过的气球要爆炸
-        if (swipeBlasting && [node.name isEqualToString:@"balloon"]) {
+        if (node && swipeBlasting && [node.name isEqualToString:@"balloon"]) {
             [(JZBalloonNode *)node blast];
         }
     }
@@ -268,6 +270,22 @@
         CGPoint newPos = CGPointMake(position.x + translation.x, position.y + translation.y);
         [self setPosition:[self boundLayerPos:newPos]];
     }
+}
+
+- (SKSpriteNode *)selectNodeForTouch:(CGPoint)touchLocation withName:(NSString *)name
+{
+    NSArray *nodes = [self selectNodesForTouch:touchLocation];
+    for (SKSpriteNode *node in nodes) {
+        if ([node.name isEqualToString:name]) {
+            return node;
+        }
+    }
+    return nil;
+}
+
+- (NSArray *)selectNodesForTouch:(CGPoint)touchLocation
+{
+    return [self nodesAtPoint:touchLocation];
 }
 
 - (SKSpriteNode *)selectNodeForTouch:(CGPoint)touchLocation {

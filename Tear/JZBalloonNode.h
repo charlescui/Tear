@@ -7,16 +7,19 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import <AVFoundation/AVFoundation.h>
 
 @interface JZBalloonNode : SKSpriteNode{
 
 }
 
+@property (nonatomic, strong) AVAudioPlayer *blowAudio;
 @property (nonatomic, strong) NSString *balloonColor;
-@property (nonatomic) float speed;
+@property (nonatomic) CGFloat speed;
 
 + (JZBalloonNode *)spriteNodeWithRandomColor;
 - (void)riseFrom:(CGPoint)location;
+- (void)riseFrom:(CGPoint)location byY:(CGFloat)to;
 - (void)riseWithPanTo:(CGPoint)to withDuration:(float)duration;
 - (void)blast;
 - (void)startBlow;

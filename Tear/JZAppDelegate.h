@@ -18,5 +18,6 @@
 @property (nonatomic) u_int32_t balloonCategory;
 @property (nonatomic, strong) NSString *scoreNotify;
 @property (nonatomic, strong) NSString *shareLabelName;
+@property (nonatomic, strong) NSString *umengAppkey;
 
 @end

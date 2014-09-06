@@ -11,6 +11,8 @@
 #import "WXApi.h"
 #import <TencentOpenAPI/QQApiInterface.h>
 #import <TencentOpenAPI/TencentOAuth.h>
+#import "JZScoreLabel.h"
+#import "UMAnalytics_Sdk_3.1.2/MobClick.h"
 
 @implementation JZAppDelegate
 
@@ -29,7 +31,7 @@
     self.shareLabelName = @"ShareLabel";
     
     [ShareSDK registerApp:@"2f295fdb1e99"];
-    [ShareSDK connectWeChatWithAppId:@"wx4868b35061f87885"
+    [ShareSDK connectWeChatWithAppId:@"wxdb3c8e642dd81305"
                            wechatCls:[WXApi class]];
     
 //    //添加QQ应用
@@ -39,6 +41,9 @@
 //    //导入QQ互联和QQ好友分享需要的外部库类型，如果不需要QQ空间SSO和QQ好友分享可以不调用此方法
 //    [ShareSDK importQQClass:[QQApiInterface class]
 //            tencentOAuthCls:[TencentOAuth class]];
+    self.umengAppkey = @"540ab16dfd98c507ca00f444";
+    [MobClick startWithAppkey:self.umengAppkey];
+    [MobClick checkUpdate];
     
     return YES;
 }
@@ -53,6 +58,11 @@
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    //app重新进入前台后
+    //积分清零
+    JZScoreLabel *scoreLabel = [JZScoreLabel sharedInstance];
+    scoreLabel.score = 0;
+    [scoreLabel increase:0];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application

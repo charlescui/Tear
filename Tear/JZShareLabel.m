@@ -31,15 +31,30 @@
 - (void)handleTapGestureToShare:(UITapGestureRecognizer *)recognizer
 {
     JZScoreLabel *scoreLabel = [JZScoreLabel sharedInstance];
-    NSString *score = [NSString stringWithFormat:@"相当无聊的我，戳气球得到%d分 ^-^ 我跟宝宝一样无聊.", scoreLabel.score];
+    
+    NSString *score;
+    
+    if (scoreLabel.score < 20) {
+        score = [NSString stringWithFormat:@"得到%d分，那你还不算无聊么，快点该干啥干啥去。", scoreLabel.score];
+    }else if (scoreLabel.score >= 20 && scoreLabel.score < 100){
+        score = [NSString stringWithFormat:@"相当无聊的我，戳气球得到%d分 ^-^ 我跟宝宝一样无聊.", scoreLabel.score];
+    }else if (scoreLabel.score >= 100 && scoreLabel.score < 500){
+        score = [NSString stringWithFormat:@"我边戳边思考，怎么才能更无聊？于是乎，我戳了%d分.", scoreLabel.score];
+    }else if (scoreLabel.score >= 500 && scoreLabel.score < 999){
+        score = [NSString stringWithFormat:@"啥也不想了，我要奋力戳出人生的巅峰！我戳，%d分.", scoreLabel.score];
+    }else if (scoreLabel.score >= 999){
+        score = [NSString stringWithFormat:@"哎呀，%d分，戳爆表了，哎呀呀！", scoreLabel.score];
+    }
+    
+    NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"icon120x120"  ofType:@"png"];
     //构造分享内容
     id<ISSContent> publishContent = [ShareSDK content:score
                                        defaultContent:@"比比谁更无聊吧!"
-                                                image:nil
-                                                title:@"ShareSDK"
-                                                  url:@""
-                                          description:@""
-                                            mediaType:SSPublishContentMediaTypeApp];
+                                                image:[ShareSDK imageWithPath:imagePath]
+                                                title:score
+                                                  url:@"http://www.pgyer.com/hHQs"
+                                          description:score
+                                            mediaType:SSPublishContentMediaTypeNews];
     [ShareSDK showShareActionSheet:nil
                          shareList:nil
                            content:publishContent
