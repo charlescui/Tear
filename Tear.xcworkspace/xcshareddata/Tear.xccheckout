@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>28C19E94-7638-4D4D-BE55-C0C674B4720A</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Tear</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>EE6D79E7-87BC-4B50-90E9-B38B4E499424</key>
+		<string>https://bitbucket.org/charlescui/tear.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Tear.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>EE6D79E7-87BC-4B50-90E9-B38B4E499424</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://bitbucket.org/charlescui/tear.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>EE6D79E7-87BC-4B50-90E9-B38B4E499424</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>EE6D79E7-87BC-4B50-90E9-B38B4E499424</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Tear</string>
+		</dict>
+	</array>
+</dict>
+</plist>
